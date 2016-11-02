@@ -1,0 +1,27 @@
+INDEX VERSION 1.126+C:\Users\Steven\Dropbox\ETH\HS14\IR\Scala-workspace\.metadata\.plugins\org.eclipse.jdt.core
+3454125809.index
+1947431546.index
+828133061.index
+3598813974.index
+2420484298.index
+489423811.index
+1832949699.index
+2486087126.index
+1604200090.index
+834584462.index
+3991718231.index
+3095963708.index
+1877021558.index
+1028199574.index
+1065832147.index
+2743915309.index
+1334270949.index
+1574318262.index
+4221128605.index
+2134742450.index
+4004133052.index
+117038722.index
+2338776811.index
+2193799835.index
+1175088535.index
+1579357211.index

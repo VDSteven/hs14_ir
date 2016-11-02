@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/IRProject1"/>
+	<classpathentry kind="lib" path="C:/Users/Steven/Dropbox/ETH/HS14/IR/Scala/eclipse/plugins/org.scala-lang.scala-actors_2.11.2.v20140721-095018-73fb460c1c.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Steven/Dropbox/ETH/HS14/IR/Scala/eclipse/plugins/org.scala-lang.scala-library_2.11.2.v20140721-095018-73fb460c1c.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Steven/Dropbox/ETH/HS14/IR/Scala/eclipse/plugins/org.scala-lang.scala-reflect_2.11.2.v20140721-095018-73fb460c1c.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Steven/Dropbox/ETH/HS14/IR/Scala/eclipse/configuration/org.eclipse.osgi/bundles/254/1/.cp/target/lib/scala-swing.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

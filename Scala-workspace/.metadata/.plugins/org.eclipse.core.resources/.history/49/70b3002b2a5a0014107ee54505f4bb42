@@ -1,0 +1,153 @@
+package main
+
+import ch.ethz.dal.tinyir.alerts._
+import ch.ethz.dal.tinyir.processing.StopWords
+import ch.ethz.dal.tinyir.processing.Tokenizer
+import ch.ethz.dal.tinyir.io.TipsterStream
+import ch.ethz.dal.tinyir.util.StopWatch
+import scala.collection.mutable.PriorityQueue
+import ch.ethz.dal.tinyir.lectures.TipsterGroundTruth
+import ch.ethz.dal.tinyir.lectures.PrecisionRecall
+import scala.io.Source
+
+case class ScoredResult (title : String, score: Double)
+
+class ProjectAlerts (q: List[String], n: Int, m: Int) {
+  
+  val tqueryList = q.map(e => new TermQuery(e))
+  val lqueryList = q.map(e => new LanguageQuery(e))
+  var lambda = 0.5
+  
+  def log2(x: Double) = scala.math.log10(x) / scala.math.log10(2.0)
+  
+  def tf(doc: List[String]) : Map[String,Int] = doc.groupBy(identity).mapValues(l => l.length)
+  def logtf(doc: List[String]) = logtemp(tf(doc))
+  def logtemp(tf: Map[String,Int]) : Map[String,Double] = tf.mapValues(v => log2((v.toDouble / tf.values.sum) + 1.0))
+  def maxlike(tf: Map[String,Int]) : Map[String,Double] = tf.mapValues(v => (v.toDouble / tf.values.sum)*(1-lambda))
+  def smooth(cf: Map[String,Int], sum: Int) : Map[String,Double] = cf.mapValues(v => (v.toDouble / sum)*lambda)
+  
+  // score a document and try to add to results
+  def processTerm(title: String, doc: List[String], idf: Map[String,Double]) : Boolean = {
+    val logtfs = logtf(doc)
+    val scoreList = tqueryList.map(e => e.score(logtfs, idf))
+    val is = (0 to 49)
+    for( i <- is) {
+      add(heapList(i),ScoredResult(title,scoreList(i)))
+    }
+    true
+  }
+  
+  def processLanguage(title: String, doc :List[String], smooths: Map[String,Double]) : Boolean = {
+    val maxs = maxlike(tf(doc))
+    val scoreList = lqueryList.map(e => e.score(maxs, smooths))
+    val is = (0 to 49)
+    for( i <- is) {
+      add(heapList(i),ScoredResult(title,scoreList(i)))
+    }
+    true
+  }
+  
+  // get top n results (or m<n, if not enough docs processed)
+  def results = heapList.map(h => h.toList.sortBy(res => -res.score))    
+
+    // heap and operations on heap
+  private val heapList = List(new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)),new PriorityQueue[ScoredResult]()(Ordering.by(score)))
+  private def score (res: ScoredResult) = -res.score
+  private def add(heap: PriorityQueue[ScoredResult], res: ScoredResult) : Boolean = {    
+    if (heap.size < n)  { // heap not full
+      heap += res
+      true
+    } else if (heap.head.score < res.score) {
+        heap.dequeue
+        heap += res
+        true
+    } else false
+  }
+  
+}
+
+object ProjectAlerts {
+  
+  def log2(x: Double) = scala.math.log10(x) / scala.math.log10(2.0)
+  def idf(df: Map[String,Int], n: Int) : Map[String,Double] = df.mapValues(log2(n) - log2(_))
+
+  def main(args: Array[String]): Unit = {
+    
+	val queryList = Source.fromFile("C:/Users/Steven/Documents/ETH/IR/topics").getLines().filter(l => l.startsWith("<title>")).map(s => s.substring(16)).toList
+    
+    /*val queryList = List("U.S. Army Acquisition of Advanced Weapons Systems",
+        "International Military Equipment Sales",
+        "What Backing Does the National Rifle Association Have?",
+        "Computer-aided Crime",
+        "Computer-aided Crime Detection",
+        "Computer-Aided Medical Diagnosis",
+        "Fiber Optics Applications",
+        "Fiber Optics Equipment Manufacturers",
+        "Iran-Contra Affair",
+        "Controlling the Transfer of High Technology")  
+    */
+    val zip_path = "C:/Users/Steven/Documents/ETH/IR/zips"
+    val num = 100
+    //0 -> term, 1 -> language
+    val model = args.head.toInt
+    val alerts = new ProjectAlerts(queryList,num,model)
+    val tipster = new TipsterStream(zip_path)
+    
+    //Term model alert
+    if (model == 0) {
+      val df = collection.mutable.Map[String,Int]()
+      var dcount: Int = 0
+      for(doc <- tipster.stream) {
+        df ++= doc.tokens.distinct.map(t => t -> (1+df.getOrElse(t, 0)))
+        dcount += 1
+      }
+      
+      val invdf = idf(df.toMap, dcount)
+      for(doc <- tipster.stream) {
+        alerts.processTerm(doc.name, doc.tokens, invdf)
+      }
+    }
+    //Language model alert
+    else {
+      val cf = collection.mutable.Map[String,Int]()
+      for(doc <- tipster.stream) {
+        val tfs = alerts.tf(doc.tokens)
+        cf ++= doc.tokens.distinct.map(t => t -> (cf.getOrElse(t, 0)+tfs.getOrElse(t, 0)))
+      }
+
+      val smooths = alerts.smooth(cf.toMap, cf.values.sum)
+      for(doc <- tipster.stream) {
+        alerts.processLanguage(doc.name, doc.tokens, smooths)
+      }
+    }
+    
+    //compute precision + map
+    var mapsum = 0.0
+    for (i <- (0 to 39)) {
+      val rel = new TipsterGroundTruth("C:/Users/Steven/Documents/ETH/IR/qrels").judgements.get((i+51).toString).get.toSet
+      val ret = alerts.results(i).map(r => r.title)
+      val pr = new PrecisionRecall(ret,rel)
+      var sum = 0.0
+      pr.precs.foreach(sum += _)
+      if (pr.precs.length==0) {
+        val ap = 0.0
+        println("Query " + (i+51).toString + " AP: " + ap)
+        mapsum += ap
+      }
+      else {
+        val ap = sum/pr.precs.length
+        println("Query " + (i+51).toString + " AP: " + ap)
+        mapsum += ap
+      }
+      
+    }
+    println()
+    println("MAP: " + mapsum/40)
+    println()
+    //ranking output either term/language model
+    for (i <- (40 to 49)) {
+      alerts.results(i).zipWithIndex.foreach{case(s,j) => println((i+51).toString + " " + (j+1).toString + " " + s.title)}
+    }
+  }
+
+}

@@ -1,0 +1,52 @@
+2014-10-07 15:02:29,253 ERROR [Text Viewer Hover Presenter] - System.err - Java Model Exception: Java Model Status [IR-Ex-1 does not exist]
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:498)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jdt.internal.core.JavaModelManager.getPerProjectInfoCheckExistence(JavaModelManager.java:2309)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jdt.internal.core.JavaProject.getPerProjectInfo(JavaProject.java:1908)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jdt.internal.core.JavaProject.getRawClasspath(JavaProject.java:1930)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ClasspathManagement$class.jdkPaths(ClasspathManagement.scala:138)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.jdkPaths(ScalaProject.scala:80)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ClasspathManagement$class.scalaClasspath(ClasspathManagement.scala:118)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.scalaClasspath(ScalaProject.scala:80)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.setupCompilerClasspath(ScalaProject.scala:501)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.initializeCompilerSettings(ScalaProject.scala:487)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject$$anon$1.create(ScalaProject.scala:99)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject$$anon$1.create(ScalaProject.scala:95)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.util.Cached$class.apply(Cached.scala:30)
+2014-10-07 15:02:29,255 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject$$anon$1.apply(ScalaProject.scala:95)
+2014-10-07 15:02:29,256 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.withPresentationCompiler(ScalaProject.scala:581)
+2014-10-07 15:02:29,256 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.withSourceFile(ScalaProject.scala:590)
+2014-10-07 15:02:29,256 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.InteractiveCompilationUnit$class.withSourceFile(InteractiveCompilationUnit.scala:66)
+2014-10-07 15:02:29,256 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.javaelements.ScalaSourceFile.withSourceFile(ScalaSourceFile.scala:69)
+2014-10-07 15:02:29,256 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaHover.getHoverInfo(ScalaHover.scala:43)
+2014-10-07 15:02:29,256 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+2014-10-07 15:02:29,260 ERROR [main] - org.scala-ide.sdt.core - org.scala-ide.sdt.core - org.scala-ide.sdt.core - 0 - Java Model Exception: Java Model Status [IR-Ex-1 does not exist]
+2014-10-07 15:03:19,159  WARN [org.eclipse.jdt.internal.ui.text.JavaReconciler] - ImplicitHighlightingPresenter - Timeout while waiting for `askLoadedTyped` during implicit highlighting.
+2014-10-16 10:11:02,437  WARN [ModalContext] - ImplicitHighlightingPresenter - Timeout while waiting for `askLoadedTyped` during implicit highlighting.
+2014-10-16 11:08:48,226  WARN [ModalContext] - ImplicitHighlightingPresenter - Timeout while waiting for `askLoadedTyped` during implicit highlighting.
+2014-10-21 18:27:40,635  WARN [org.eclipse.jdt.internal.ui.text.JavaReconciler] - ImplicitHighlightingPresenter - Timeout while waiting for `askLoadedTyped` during implicit highlighting.
+2014-10-22 15:39:30,595  WARN [main] - ImplicitHighlightingPresenter - Timeout while waiting for `askLoadedTyped` during implicit highlighting.
+2014-10-22 15:39:30,798  WARN [main] - ImplicitHighlightingPresenter - Timeout while waiting for `askLoadedTyped` during implicit highlighting.
+2014-10-22 15:41:33,855 ERROR [Text Viewer Hover Presenter] - System.err - Java Model Exception: Java Model Status [IR-Project1 does not exist]
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:498)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jdt.internal.core.JavaModelManager.getPerProjectInfoCheckExistence(JavaModelManager.java:2309)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jdt.internal.core.JavaProject.getPerProjectInfo(JavaProject.java:1908)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jdt.internal.core.JavaProject.getRawClasspath(JavaProject.java:1930)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ClasspathManagement$class.jdkPaths(ClasspathManagement.scala:138)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.jdkPaths(ScalaProject.scala:80)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ClasspathManagement$class.scalaClasspath(ClasspathManagement.scala:118)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.scalaClasspath(ScalaProject.scala:80)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.setupCompilerClasspath(ScalaProject.scala:501)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.initializeCompilerSettings(ScalaProject.scala:487)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject$$anon$1.create(ScalaProject.scala:99)
+2014-10-22 15:41:33,871 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject$$anon$1.create(ScalaProject.scala:95)
+2014-10-22 15:41:33,887 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.util.Cached$class.apply(Cached.scala:30)
+2014-10-22 15:41:33,887 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject$$anon$1.apply(ScalaProject.scala:95)
+2014-10-22 15:41:33,887 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.withPresentationCompiler(ScalaProject.scala:581)
+2014-10-22 15:41:33,887 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaProject.withSourceFile(ScalaProject.scala:590)
+2014-10-22 15:41:33,887 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.InteractiveCompilationUnit$class.withSourceFile(InteractiveCompilationUnit.scala:66)
+2014-10-22 15:41:33,887 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.javaelements.ScalaSourceFile.withSourceFile(ScalaSourceFile.scala:69)
+2014-10-22 15:41:33,887 ERROR [Text Viewer Hover Presenter] - System.err - at scala.tools.eclipse.ScalaHover.getHoverInfo(ScalaHover.scala:43)
+2014-10-22 15:41:33,887 ERROR [Text Viewer Hover Presenter] - System.err - at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+2014-10-22 15:41:33,887 ERROR [main] - org.scala-ide.sdt.core - org.scala-ide.sdt.core - org.scala-ide.sdt.core - 0 - Java Model Exception: Java Model Status [IR-Project1 does not exist]
+2014-10-22 21:02:24,660  WARN [main] - ImplicitHighlightingPresenter - Timeout while waiting for `askLoadedTyped` during implicit highlighting.
+2014-11-03 17:16:17,671  WARN [Worker-5] - ImplicitHighlightingPresenter - Timeout while waiting for `askLoadedTyped` during implicit highlighting.
